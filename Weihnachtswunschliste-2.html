@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meine Weihnachtswunschliste</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Playfair+Display:wght@700;800&display=swap');
+:root{--pine:#123e32;--pine2:#1d6048;--red:#b72f3b;--gold:#e9bd69;--cream:#fffaf0}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:'DM Sans',sans-serif;color:var(--pine);background:
+radial-gradient(ellipse at 50% 0%,#fff8e8 0%,transparent 48%),
+linear-gradient(135deg,#0d352b,#1b5943 52%,#0c3028);overflow-x:hidden}
+body:before,body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0}
+body:before{opacity:.19;background-image:radial-gradient(circle,#f6d88e 1.4px,transparent 1.8px);background-size:38px 38px}
+body:after{background:linear-gradient(90deg,rgba(0,0,0,.13),transparent 16%,transparent 84%,rgba(0,0,0,.13))}
+.scene{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:44px clamp(16px,5vw,80px)}
+.side{position:fixed;top:0;bottom:0;width:clamp(105px,18vw,250px);pointer-events:none;display:flex;flex-direction:column;justify-content:space-around;align-items:center;opacity:.95;z-index:0}
+.side.left{left:0}.side.right{right:0}
+.side .big{font-size:clamp(2.3rem,5vw,5rem);filter:drop-shadow(0 8px 10px #071d1880);animation:float 5s ease-in-out infinite}
+.side .big:nth-child(even){animation-delay:-2.5s}
+.side .small{font-size:clamp(1.3rem,2.5vw,2.4rem);opacity:.85}
+@keyframes float{50%{transform:translateY(-12px) rotate(5deg)}}
+.garland{position:fixed;top:0;left:0;right:0;height:48px;z-index:2;pointer-events:none;border-top:5px solid #286044;border-radius:0 0 50% 50%}
+.garland:before{content:"";position:absolute;left:0;right:0;top:-7px;height:30px;background:radial-gradient(circle at 5% 70%,#f3cf78 0 4px,transparent 5px),radial-gradient(circle at 16% 30%,#d84a4b 0 4px,transparent 5px),radial-gradient(circle at 27% 72%,#f3cf78 0 4px,transparent 5px),radial-gradient(circle at 39% 30%,#d84a4b 0 4px,transparent 5px),radial-gradient(circle at 51% 72%,#f3cf78 0 4px,transparent 5px),radial-gradient(circle at 63% 30%,#d84a4b 0 4px,transparent 5px),radial-gradient(circle at 75% 72%,#f3cf78 0 4px,transparent 5px),radial-gradient(circle at 87% 30%,#d84a4b 0 4px,transparent 5px),radial-gradient(circle at 97% 72%,#f3cf78 0 4px,transparent 5px)}
+.card{position:relative;width:min(690px,100%);padding:clamp(30px,5vw,54px);text-align:center;background:linear-gradient(145deg,#fffdf7,#f8f0df);border:1px solid #fff8e5;border-radius:30px;box-shadow:0 30px 90px #061f1a80, inset 0 0 0 7px #f2e6cd;overflow:hidden}
+.card:before{content:"";position:absolute;inset:15px;border:1px solid #d9c89f;border-radius:21px;pointer-events:none}
+.topline{font-size:.75rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--red)}
+h1{font:800 clamp(2.3rem,7vw,4rem)/1.02 'Playfair Display',serif;color:var(--pine);margin:14px 0 12px}
+.intro{color:#718075;line-height:1.65;margin:0 auto 24px;max-width:430px}
+.snowflake{color:#c59a4d;font-size:1.2rem;letter-spacing:.5em}
+.wish{position:relative;margin:25px 0 22px;padding:27px 18px 25px;border-radius:23px;background:linear-gradient(135deg,#fff,#f4f0e5);border:1px solid #e8dcc4;box-shadow:0 10px 28px #244b3510}
+.wish:after{content:"";position:absolute;inset:8px;border:1px dashed #dfd0ae;border-radius:17px;pointer-events:none}
+.pc-wrap{height:150px;display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px}
+.tower{height:132px;width:91px;border-radius:12px 12px 9px 9px;position:relative;background:linear-gradient(110deg,#17232a,#394c55 46%,#111b22);border:3px solid #10191f;box-shadow:8px 10px 18px #162d2b35,inset 0 0 0 3px #61717a}
+.tower:before{content:"";position:absolute;inset:12px 10px 34px;border-radius:7px;background:radial-gradient(circle at 50% 50%,#e7b9ff 0 3px,#a64fff 5px,#4c1b81 9px,#14202c 25px);box-shadow:0 0 13px #b45dff}
+.tower:after{content:"";position:absolute;bottom:10px;left:12px;width:60px;height:7px;border-radius:6px;background:linear-gradient(90deg,#37e7d0,#9b5cff,#ff548e);box-shadow:0 0 10px #9b5cff}
+.glass{position:absolute;top:13px;left:11px;right:11px;height:82px;border:1px solid #a7b7c2;border-radius:5px;background:linear-gradient(135deg,#ffffff25,transparent 50%)}
+.front{position:absolute;right:7px;top:13px;bottom:34px;width:5px;border-radius:5px;background:#a4b4bc}
+.base{position:absolute;bottom:-6px;left:12px;width:64px;height:5px;border-radius:5px;background:#11191e}
+.pc-label{font-size:.68rem;letter-spacing:.14em;color:#8b8b80;font-weight:800;text-transform:uppercase}
+.wish h2{font:700 clamp(1.55rem,5vw,2.2rem)/1.2 'Playfair Display',serif;margin:10px 0;color:#1b3f31}
+.wish p{margin:9px 0 0;color:#7d887e;font-size:.95rem}
+.buttons{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;min-height:65px;margin:22px auto 12px}
+button{border:0;border-radius:999px;padding:14px 28px;font:800 1rem 'DM Sans',sans-serif;cursor:pointer;transition:transform .22s,box-shadow .22s,font-size .22s,padding .22s;white-space:nowrap}
+button:hover{transform:translateY(-3px)}
+.yes{color:#fff;background:linear-gradient(135deg,#237b55,#124a36);box-shadow:0 8px 20px #14583b45;font-size:1rem;padding:14px 29px}
+.no{color:#943a40;background:#f6e4df;border:1px solid #e9c9c1;font-size:1rem;padding:14px 27px}
+.counter{font-size:.86rem;color:#92978d;min-height:22px}
+.progress{width:min(300px,90%);height:6px;background:#e9e1d2;border-radius:20px;margin:11px auto 0;overflow:hidden}
+.bar{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));transition:width .35s}
+.other{display:none;text-align:left;margin:26px auto 0;max-width:440px;animation:appear .5s ease}
+.other h3{text-align:center;font:700 1.45rem 'Playfair Display',serif}
+.other ul{padding:0;list-style:none;display:grid;gap:10px}
+.other li{background:#fff;border:1px solid #eee2cc;padding:14px 16px;border-radius:13px;box-shadow:0 4px 12px #1c49300a}
+.thanks{display:none;animation:appear .5s ease}
+.thanks .huge{font-size:clamp(3rem,10vw,5.5rem)}
+.thanks h2{font:800 clamp(2.3rem,8vw,4rem) 'Playfair Display',serif;color:var(--pine);margin:12px 0}
+.thanks p{line-height:1.8;color:#718075}
+.footer{margin-top:27px;font-size:.75rem;letter-spacing:.08em;color:#a7a18f}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.confetti{position:fixed;top:-20px;width:10px;height:16px;z-index:10;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(850deg);opacity:.9}}
+@media(max-width:700px){.side{opacity:.35;width:65px}.scene{padding:54px 12px 25px}.card{padding:34px 21px}.side .big{font-size:2.2rem}.card:before{inset:10px}}
+</style>
+</head>
+<body>
+<div class="garland"></div>
+<div class="side left" aria-hidden="true"><span class="big">🎄</span><span class="small">❄️</span><span class="big">🎁</span><span class="small">⭐</span><span class="big">🦌</span><span class="small">❄️</span><span class="big">🎄</span></div>
+<div class="side right" aria-hidden="true"><span class="big">⭐</span><span class="small">❄️</span><span class="big">🎅</span><span class="small">✨</span><span class="big">🎁</span><span class="small">❄️</span><span class="big">🎄</span></div>
+<div class="scene">
+<main class="card">
+  <div class="snowflake">✦ ✧ ✦</div>
+  <div class="topline">Weihnachten steht vor der Tür</div>
+  <h1>Meine große<br>Weihnachts-Wunschliste</h1>
+  <p class="intro">Liebe Mama, ich habe mir dieses Jahr etwas ganz Besonderes gewünscht. Bist du bereit? ❤️</p>
+  <section id="mainWish">
+    <div class="wish">
+      <div class="pc-wrap" aria-label="Illustration eines Gaming-PC-Towers">
+        <div class="tower"><div class="glass"></div><div class="front"></div><div class="base"></div></div>
+      </div>
+      <div class="pc-label">Mein größter Wunsch</div>
+      <h2>Ich wünsche mir einen Gaming PC!</h2>
+      <p>Für viele neue Gaming-Abenteuer. 🎮</p>
+    </div>
+    <div class="buttons">
+      <button class="yes" id="yesBtn">Ja! 🎁</button>
+      <button class="no" id="noBtn">Nein 🙈</button>
+    </div>
+    <div class="counter" id="counter">Du hast noch 10-mal die Wahl …</div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <section class="other" id="other">
+      <h3>Meine anderen Wünsche 🎁</h3>
+      <ul>
+        <li>🎧 Ein neues Gaming-Headset</li>
+        <li>⌨️ Eine coole Gaming-Tastatur</li>
+        <li>🖱️ Eine Gaming-Maus</li>
+      </ul>
+    </section>
+  </section>
+  <section class="thanks" id="thanks">
+    <div class="huge">🎉🎄🎉</div>
+    <h2>DAAAANKE, MAMA!</h2>
+    <p>Du bist die Beste! ❤️<br>Ich wünsche dir wunderschöne Weihnachten!</p>
+    <div class="huge">🎁 ⭐ 🎮 ⭐ 🎁</div>
+  </section>
+  <div class="footer">MIT GANZ VIEL WEIHNACHTSLIEBE GEMACHT</div>
+</main>
+</div>
+<script>
+let clicks=0;
+const yes=document.getElementById('yesBtn'), no=document.getElementById('noBtn');
+const counter=document.getElementById('counter'), bar=document.getElementById('bar');
+no.addEventListener('click',()=>{
+  clicks=Math.min(clicks+1,10);
+  const left=10-clicks;
+  const yesScale=1+clicks*.105;
+  const noScale=Math.max(.35,1-clicks*.065);
+  yes.style.fontSize=(16*yesScale)+'px';
+  yes.style.padding=(14*yesScale)+'px '+(29*yesScale)+'px';
+  no.style.fontSize=(16*noScale)+'px';
+  no.style.padding=(14*noScale)+'px '+(27*noScale)+'px';
+  bar.style.width=(clicks*10)+'%';
+  if(left>0){
+    counter.textContent=`Noch ${left}-mal Nein, dann kommen die anderen Wünsche …`;
+    no.textContent=left===1?'Nein (letztes Mal) 😅':'Nein 🙈';
+  }else{
+    counter.textContent='Geschafft! Hier sind deine anderen Wünsche. 🎁';
+    document.getElementById('other').style.display='block';
+    no.textContent='Fertig!';
+    no.disabled=true;
+    no.style.opacity='.55';
+    no.style.cursor='default';
+  }
+});
+yes.addEventListener('click',()=>{
+  document.getElementById('mainWish').style.display='none';
+  document.getElementById('thanks').style.display='block';
+  confetti();
+});
+function confetti(){
+  const colors=['#b72f3b','#e9bd69','#1d6048','#f2a7a1','#7ab69a','#fff'];
+  for(let i=0;i<220;i++){
+    const p=document.createElement('i');p.className='confetti';
+    p.style.left=Math.random()*100+'vw';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDuration=(2.5+Math.random()*3)+'s';
+    p.style.animationDelay=Math.random()*.7+'s';
+    p.style.borderRadius=Math.random()>.5?'50%':'2px';
+    document.body.appendChild(p);setTimeout(()=>p.remove(),6500);
+  }
+}
+</script>
+</body></html>
